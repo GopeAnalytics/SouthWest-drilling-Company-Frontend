@@ -1,0 +1,96 @@
+@import url("reset.css");
+@import url("variables.css");
+
+.navbar-brand,
+.navbar-brand:hover,
+.navbar-brand:focus,
+#offcanvasNavbarLabel {
+  color: var(--light-color);
+  font-weight: bold;
+
+  transition: letter-spacing 0.3s ease;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus,
+#offcanvasNavbarLabel:hover {
+  letter-spacing: 2px;
+}
+.nav-link {
+  color: var(--light-color);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+  border-radius: 5px;
+}
+.nav-link:hover,
+.nav-link:focus,
+.nav-link.active {
+  color: var(--primary-color) !important;
+  background: var(--light-color);
+}
+
+.offcanvas .nav-link.active,
+.offcanvas .nav-link:hover,
+.offcanvas .nav-link:focus {
+  padding-left: 1rem;
+}
+.hero {
+  background-image: url("../assets/images/work1.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+  margin: 0;
+  margin-bottom: 4rem;
+  min-height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  padding-top: 80px;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 96, 100, 0.9) 0%,
+    rgba(0, 96, 100, 0.6) 40%,
+    rgba(0, 96, 100, 0.4) 70%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  z-index: 1;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 2;
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.card-img-top,
+.carousel-inner img,
+.carousel-item img,
+.project-card img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  height: 370px;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+#projectsGallery .card-title {
+  font-size: calc(70% + 0.5vw);
+  font-weight: bold;
+}

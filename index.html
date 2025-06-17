@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Iwinosa Fabian Idahosa" />
+    <meta name="description" content="SouthWest Drilling Company - Home" />
+    <meta property="og:title" content="SouthWest Drilling Company" />
+    <meta property="og:type" content="website" />
+    <title>SouthWest Drilling Company - Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/larger.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="icon" href="images/favicon.ico" />
+  </head>
+
+  <body>
+    <div id="content">
+      <header class="header">
+        <div class="nav-container">
+          <a href="index.html" class="logo">
+            <img
+              class="logo-image"
+              src="assets/images/logo.webp"
+              alt="SouthWest Drilling Company Logo"
+            />
+            <span>SouthWest Drilling Company</span>
+          </a>
+
+          <ul class="nav-menu" id="navMenu">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="about.html">AboutUs</a></li>
+          </ul>
+
+          <div class="mobile-menu-toggle" id="mobileMenuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </header>
+
+      <section class="home-hero">
+        <div class="heroContainer">
+          <div class="main">
+            <div class="heroText"></div>
+          </div>
+          <div class="heroLinkContainer">
+            <div>
+              <a href="about.html" aria-label="learn-more" class="learn-more ms"
+                >LEARN MORE</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <div id="searchBoxContainer">
+        <div class="searchContainer">
+          <input
+            type="search"
+            id="search"
+            name="q"
+            placeholder="Search projects"
+          />
+          <button aria-label="button" class="search-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5
+              32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7
+              40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208
+              352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="close">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path
+              fill="#ffffff"
+              d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+
+      <main id="homeMainContainer">
+        <section class="welcome">
+          <div class="welcome-content">
+            <h2><span class="brand">About SouthWest Drilling Company</span></h2>
+            <p>
+              Southwest is a leading drilling company dedicated to delivering
+              <span>reliable</span> and <span>sustainable</span> water solutions
+              across Kenya. We specialize in a wide range of services tailored
+              to meet the diverse and unique needs of our clients, from
+              residential and agricultural to industrial and commercial sectors.
+              With a commitment to quality, innovation, and environmental
+              responsibility, Southwest ensures every project is executed with
+              precision and professionalism to support long-term water access
+              and resource management.
+            </p>
+
+            <h2><span class="brand">What We Do</span></h2>
+            <ul style="list-style-type: none">
+              <li>Borehole drilling</li>
+              <li>Water surveys</li>
+              <li>Pump installations</li>
+              <li>Maintenance</li>
+            </ul>
+            <a href="services.html" class="cta-button">Explore Our Services</a>
+          </div>
+        </section>
+
+        <section class="featured-projects">
+          <h2>Featured Projects</h2>
+
+          <div class="project-card">
+            <div class="project-image">
+              <img src="assets/images/image1.jpg" alt="Project 1 Image" />
+            </div>
+            <div class="project-content">
+              <h3>Rural Borehole Installation</h3>
+              <p><strong>Location:</strong> Kitui County</p>
+              <p>
+                We provided a sustainable water source to a remote village,
+                improving access to clean water for over 300 households.
+              </p>
+            </div>
+          </div>
+
+          <div class="project-card reverse">
+            <div class="project-content">
+              <h3>Urban Water Well</h3>
+              <p><strong>Location:</strong> Nairobi</p>
+              <p>
+                This project involved drilling a high-capacity water well to
+                support a growing residential estate in the city.
+              </p>
+            </div>
+            <div class="project-image">
+              <img src="assets/images/image3.jpg" alt="Project 2 Image" />
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <img src="assets/images/image3.jpg" alt="Project 3 Image" />
+            </div>
+            <div class="project-content">
+              <h3>Community School Borehole</h3>
+              <p><strong>Location:</strong> Kisumu</p>
+              <p>
+                We drilled a borehole for a local school, ensuring students and
+                staff have consistent access to safe, clean water.
+              </p>
+            </div>
+          </div>
+
+          <div class="project-card reverse">
+            <div class="project-content">
+              <h3>Commercial Water Supply System</h3>
+              <p><strong>Location:</strong> Mombasa</p>
+              <p>
+                Developed a commercial-grade borehole and tank system for a
+                hotel chain to reduce their reliance on municipal water.
+              </p>
+            </div>
+            <div class="project-image">
+              <img src="assets/images/image1.jpg" alt="Project 4 Image" />
+            </div>
+          </div>
+
+          <div class="see-more-container">
+            <a href="projects.html" class="see-more-button"
+              >See More Projects</a
+            >
+          </div>
+        </section>
+
+        <section class="testimonials">
+          <div class="container">
+            <h2>Testimonials</h2>
+            <div class="testimonial-item">
+              <p>
+                “Southwest Drilling exceeded my expectations. As a farmer,
+                having a reliable water source is everything. They drilled a
+                borehole on my land, and within days, I had clean, consistent
+                water for my crops and livestock. Their team was professional,
+                efficient, and respectful throughout the entire process. I
+                highly recommend them to any farmer looking for long-term water
+                solutions.”
+              </p>
+              <h4>- Josephat Mwangi, Small-Scale Farmer</h4>
+            </div>
+
+            <div class="testimonial-item">
+              <p>
+                “We struggled for years with water shortages at our school until
+                we partnered with Southwest Drilling. Their team conducted a
+                thorough site survey, offered expert advice, and completed the
+                project on time. Today, our students and staff have access to
+                clean water every day. This has greatly improved hygiene and
+                learning conditions.”
+              </p>
+              <h4>- Amina Yusuf, School Principal</h4>
+            </div>
+
+            <div class="testimonial-item">
+              <p>
+                “Running a hotel means water is crucial—both for our guests and
+                operations. Southwest Drilling provided us with a dependable
+                borehole system that meets our daily water needs without fail.
+                Their technical knowledge and customer service were outstanding.
+                I wouldn’t hesitate to work with them again in future projects.”
+              </p>
+              <h4>- Iwinosa Idahosa, Hotel Owner</h4>
+            </div>
+          </div>
+        </section>
+
+        <section class="location-map">
+          <div class="container">
+            <h2>Our Office and Location</h2>
+            <p>
+              Find us on the map and visit us to explore our sustainable
+              borehole drilling solutions.
+            </p>
+
+            <div class="map-container">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31723.878392666506!2d5.6052903999999995!3d6.3311779999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1040d22ec68feef5%3A0xf84277ac8b9b1b95!2sProtea%20Hotel%20Benin%20City%20Select%20Emotan!5e0!3m2!1sen!2sng!4v1738844019174!5m2!1sen!2sng"
+                width="600"
+                height="450"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              >
+                allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+
+            <a href="contact.html" class="cta-button">Contact Us!</a>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>SouthWest Drilling Company</h3>
+            <p>
+              Professional water drilling services for residential, commercial,
+              and agricultural needs. Serving kenyan regions with reliable and
+              efficient well drilling solutions.
+            </p>
+            <div class="social-links">
+              <a href="#" title="X (Twitter)"
+                ><i class="fab fa-x-twitter"></i
+              ></a>
+              <a href="#" title="LinkedIn"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+              <a
+                href="https://web.facebook.com/Southwestdrillingcompany"
+                title="Facebook"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+              <a
+                href="https://www.instagram.com/swsdrillingcompany/"
+                title="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h3>Services</h3>
+            <a href="borehole-drilling.html" class="footer-link"
+              >Borehole Drilling</a
+            >
+            <a href="water-surveys.html" class="footer-link">Water Survey</a>
+            <a href="pump-installations.html" class="footer-link"
+              >Pump Installation</a
+            >
+            <a href="maintenance.html" class="footer-link">Maintenance</a>
+          </div>
+
+          <div class="footer-section">
+            <h3>Company</h3>
+            <a href="about.html" class="footer-link">About Us</a>
+            <a href="media.html" class="footer-link">Media</a>
+            <a href="projects.html" class="footer-link">Projects</a>
+            <a href="#" class="footer-link">FAQs</a>
+            <a href="content-management.html" class="footer-link">CMS</a>
+          </div>
+
+          <div class="footer-section">
+            <h3>Contact</h3>
+            <a href="contact.html" class="footer-link">Get in Touch</a>
+            <a href="tel:+254725210022" class="footer-link">+254 725 210 022</a>
+            <a href="mailto:info@southwestdrilling.com" class="footer-link"
+              >info@southwestdrilling.com</a
+            >
+            <div>90 -50300 Vihiga</div>
+            <div>Mbale, Kenya.</div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2025 South West Water Drilling Company. All rights reserved.</p>
+        </div>
+      </footer>
+
+      <script></script>
+
+      <script>
+        const heroContainerMain = document.querySelector(".heroContainer");
+        heroContainerMain.querySelector(
+          ".heroText"
+        ).innerHTML = `<h2>Delivering deep water solutions across Kenya</h2>
+            <p>Safe. Sustainable. Strategic</p>`;
+      </script>
+
+      <script defer src="js/script.js"></script>
+      <script defer src="js/hamburger.js"></script>
+      <script defer src="js/home.js"></script>
+    </div>
+  </body>
+</html>

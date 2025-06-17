@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>South West - Projects</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/mains.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/projects.css" />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav-container">
+        <a href="index.html" class="logo">
+          <img
+            src="assets/images/logo.webp"
+            alt="SouthWest Drilling Company Logo"
+            class="logo-image"
+          />
+          SouthWest Drillling Company
+        </a>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html" class="active">Projects</a></li>
+          <li><a href="about.html">AboutUs</a></li>
+        </ul>
+        <div class="mobile-menu-toggle" id="mobileMenuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <div class="page-hero">
+        <div class="hero-content">
+          <h1 class="page-title">Our Projects</h1>
+          <p class="page-subtitle">
+            Discover our extensive portfolio of successful borehole drilling
+            projects across various locations and industries.
+          </p>
+        </div>
+      </div>
+
+      <div class="filters">
+        <div class="filter-group">
+          <label class="filter-label">Filter by Year</label>
+          <select class="filter-select" id="yearFilter">
+            <option value="">All Years</option>
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">Filter by Type</label>
+          <select class="filter-select" id="typeFilter">
+            <option value="">All Types</option>
+            <option value="borehole-drilling">Borehole Drilling</option>
+            <option value="water-surveys">Water Surveys</option>
+            <option value="maintenance">Maintenance</option>
+            <option value="pump-installations">Pump Installations</option>
+            <option value="industrial">Industrial</option>
+          </select>
+        </div>
+
+        <div class="filter-actions">
+          <button class="btn btn-primary" id="applyFilters">
+            Apply Filters
+          </button>
+          <button class="btn btn-secondary" id="resetFilters">Reset</button>
+        </div>
+      </div>
+
+      <div id="loadingContainer" class="loading" style="display: none">
+        <div class="spinner"></div>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+        <!-- Project cards will be dynamically inserted here by projects.js -->
+      </div>
+
+      <div class="load-more-container">
+        <button class="btn-load-more" id="loadMoreBtn" style="display: none">
+          Load More Projects
+        </button>
+      </div>
+    </main>
+
+    <!-- Project Details Modal (hidden by default) -->
+    <div
+      id="projectDetailsModal"
+      class="details-modal-overlay"
+      style="display: none"
+    >
+      <div class="details-modal">
+        <button class="details-modal-close">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="details-modal-content">
+          <!-- Project details will be populated here by projects.js -->
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>SouthWest Drilling Company</h3>
+          <p>
+            Professional water drilling services for residential, commercial,
+            and agricultural needs. Serving kenyan regions with reliable and
+            efficient well drilling solutions.
+          </p>
+          <div class="social-links">
+            <a href="#" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a
+              href="https://web.facebook.com/Southwestdrillingcompany"
+              title="Facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a
+              href="https://www.instagram.com/swsdrillingcompany/"
+              title="Instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Services</h3>
+          <a href="borehole-drilling.html" class="footer-link"
+            >Borehole Drilling</a
+          >
+          <a href="water-surveys.html" class="footer-link">Water Survey</a>
+          <a href="pump-installations.html" class="footer-link"
+            >Pump Installation</a
+          >
+          <a href="maintenance.html" class="footer-link">Maintenance</a>
+        </div>
+
+        <div class="footer-section">
+          <h3>Company</h3>
+          <a href="about.html" class="footer-link">About Us</a>
+          <a href="media.html" class="footer-link">Media</a>
+          <a href="projects.html" class="footer-link">Projects</a>
+          <a href="#" class="footer-link">FAQs</a>
+          <a href="content-management.html" class="footer-link">CMS</a>
+        </div>
+
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <a href="contact.html" class="footer-link">Get in Touch</a>
+          <a href="tel:+254725210022" class="footer-link">+254 725 210 022</a>
+          <a href="mailto:info@southwestdrilling.com" class="footer-link"
+            >info@southwestdrilling.com</a
+          >
+          <div>90 -50300 Vihiga</div>
+          <div>Mbale, Kenya.</div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 South West Water Drilling Company. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="js/hamburger.js"></script>
+    <script src="js/reactive.js"></script>
+    <script src="js/projects.js"></script>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+@media screen and (min-width: 800px) {
+  .switch {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: inline-block;
+    width: 65px;
+    height: 35px;
+  }
+
+  nav {
+    display: block;
+    width: 95%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  #menu,
+  #close {
+    display: none;
+  }
+
+  .navigation {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+  }
+
+  .navigation li {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    font-weight: 200;
+  }
+
+  .navigation a {
+    position: relative;
+  }
+
+  .navigation a:not(.active)::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    transition: width 0.5s ease;
+    background-color: white;
+    margin-top: 13px;
+  }
+
+  .navigation a:hover::before {
+    width: 100%;
+  }
+
+  @media screen and (width >= 800px) and (width <= 1369px) {
+    .navigation li {
+      padding: 0.8rem 0.6rem;
+    }
+    .footer-grid {
+      margin: 0 auto;
+      all: unset;
+      display: grid;
+      grid-template-areas:
+        "logo customers company further"
+        "follow follow follow follow";
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      padding: 1rem;
+    }
+    .brand {
+      grid-area: logo;
+    }
+    .customers {
+      grid-area: customers;
+    }
+    .company {
+      grid-area: company;
+    }
+    .further {
+      grid-area: further;
+    }
+    .social {
+      grid-area: follow;
+      place-self: center;
+      text-align: center;
+      margin-top: 4rem;
+    }
+  }
+}

@@ -1,0 +1,165 @@
+.footer {
+  background: #1e293b;
+  color: white;
+  padding: 3rem 0 2rem;
+  margin-top: 4rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-section h3 {
+  color: #6366f1;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.footer-section p {
+  color: #94a3b8;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.footer-section div {
+  color: #94a3b8;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.footer-section div:hover {
+  color: #cbd5e1;
+}
+
+.footer-link {
+  color: #94a3b8;
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  display: block;
+  padding: 0.25rem 0;
+}
+
+.footer-link:hover {
+  color: #6366f1;
+  transform: translateX(5px);
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #374151;
+  border-radius: 8px;
+  color: #94a3b8;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.social-links a:hover {
+  background: #6366f1;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid #374151;
+  margin-top: 2rem;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+.activation-notice {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.8);
+  color: #94a3b8;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.activation-notice a {
+  color: #6366f1;
+  text-decoration: none;
+}
+
+.activation-notice a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 1024px) {
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .footer-section:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 2rem 0 1.5rem;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+
+  .footer-section:first-child {
+    grid-column: 1;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .footer-section h3 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-links a {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+  }
+}

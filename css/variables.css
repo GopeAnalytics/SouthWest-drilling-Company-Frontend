@@ -1,0 +1,32 @@
+:root {
+  --bs-primary: #0d3b66;
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+  --bs-primary-rgb: 8, 43, 95;
+  --bs-secondary-rgb: 108, 117, 125;
+  --bs-success-rgb: 25, 135, 84;
+  --bs-info-rgb: 13, 202, 240;
+
+  /* Custom colors */
+  --primary-color: var(--bs-primary);
+  --secondary-color: var(--bs-secondary);
+  --success-color: var(--bs-success);
+  --info-color: var(--bs-info);
+  --warning-color: var(--bs-warning);
+  --danger-color: var(--bs-danger);
+  --light-color: var(--bs-light);
+  --dark-color: var(--bs-dark);
+
+  /* bg colors including the rgba colors */
+  --bg-primary: rgba(8, 43, 95, 0.1);
+  --bg-secondary: rgba(108, 117, 125, 0.1);
+  --bg-success: rgba(25, 135, 84, 0.1);
+  --bg-info: rgba(13, 202, 240, 0.1);
+  --bg-warning: rgba(255, 193, 7, 0.1);
+  --bg-danger: rgba(220, 53, 69, 0.1);
+}

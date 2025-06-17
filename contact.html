@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>South West - Contact Us</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/mains.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/contact.css" />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav-container">
+        <a href="index.html" class="logo">
+          <img
+            src="assets/images/logo.webp"
+            alt="SouthWest Drilling Company Logo"
+            class="logo-image"
+          />
+          SouthWest Drillling Company
+        </a>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="about.html">AboutUs</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        <div class="mobile-menu-toggle" id="mobileMenuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <div class="page-hero">
+        <div class="hero-content">
+          <h1 class="page-title">Contact Us</h1>
+          <p class="page-subtitle">
+            Get in touch with South West Water Drilling Company
+          </p>
+        </div>
+      </div>
+
+      <div class="contact-container">
+        <div class="contact-form-section">
+          <h2 class="section-title">Send us a Message</h2>
+          <!-- Container for feedback messages -->
+          <div id="formStatus" class="form-status" style="display: none"></div>
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label for="name" class="form-label">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-input"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="message" class="form-label">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                class="form-textarea"
+                rows="6"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <span class="btn-text">Send Message</span>
+              <i class="fas fa-spinner fa-spin" style="display: none"></i>
+            </button>
+          </form>
+        </div>
+
+        <div class="contact-info-section">
+          <h2 class="section-title">Contact Information</h2>
+
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div class="contact-details">
+              <h3 class="contact-title">Phone</h3>
+              <a href="tel:+254725210022" class="contact-link"
+                >+254 725 210 022</a
+              >
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-details">
+              <h3 class="contact-title">Email</h3>
+              <a href="mailto:info@southwestdrilling.com" class="contact-link">
+                info@southwestdrilling.com
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="contact-details">
+              <h3 class="contact-title">Office Hours</h3>
+              <div class="office-hours">
+                <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
+                <p>Saturday: 9:00 AM - 4:00 PM</p>
+                <p>Sunday: Closed</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="location-section">
+        <h2>Our Office and Location</h2>
+        <p>
+          Find us on the map and visit us to explore our sustainable borehole
+          drilling solutions.
+        </p>
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.813876722216!2d34.721458!3d0.073456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x178007a5b3a3b3b3%3A0x6d5e1f1f1b1b1b1b!2sMbale%2C%20Vihiga%2C%20Kenya!5e0!3m2!1sen!2ske!4v1689280000000!5m2!1sen!2ske"
+            width="100%"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          >
+          </iframe>
+        </div>
+        <div class="address-info">
+          <p>90 - 50300 Vihiga</p>
+          <p>Mbale, Kenya.</p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>SouthWest Drilling Company</h3>
+          <p>
+            Professional water drilling services for residential, commercial,
+            and agricultural needs. Serving kenyan regions with reliable and
+            efficient well drilling solutions.
+          </p>
+          <div class="social-links">
+            <a href="#" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a
+              href="https://web.facebook.com/Southwestdrillingcompany"
+              title="Facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a
+              href="https://www.instagram.com/swsdrillingcompany/"
+              title="Instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Services</h3>
+          <a href="borehole-drilling.html" class="footer-link"
+            >Borehole Drilling</a
+          >
+          <a href="water-surveys.html" class="footer-link">Water Survey</a>
+          <a href="pump-installations.html" class="footer-link"
+            >Pump Installation</a
+          >
+          <a href="maintenance.html" class="footer-link">Maintenance</a>
+        </div>
+
+        <div class="footer-section">
+          <h3>Company</h3>
+          <a href="about.html" class="footer-link">About Us</a>
+          <a href="media.html" class="footer-link">Media</a>
+          <a href="projects.html" class="footer-link">Projects</a>
+          <a href="#" class="footer-link">FAQs</a>
+          <a href="content-management.html" class="footer-link">CMS</a>
+        </div>
+
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <a href="contact.html" class="footer-link">Get in Touch</a>
+          <a href="tel:+254725210022" class="footer-link">+254 725 210 022</a>
+          <a href="mailto:info@southwestdrilling.com" class="footer-link"
+            >info@southwestdrilling.com</a
+          >
+          <div>90 -50300 Vihiga</div>
+          <div>Mbale, Kenya.</div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 South West Water Drilling Company. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="js/hamburger.js"></script>
+    <script src="js/contact.js"></script>
+  </body>
+</html>
