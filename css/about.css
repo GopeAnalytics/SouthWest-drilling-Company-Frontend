@@ -36,7 +36,7 @@
   padding-left: 1rem;
 }
 .hero {
-  background-image: url("../assets/images/work1.jpg");
+  background-image: url("../assets/images/aboutHero.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -93,4 +93,11 @@
 #projectsGallery .card-title {
   font-size: calc(70% + 0.5vw);
   font-weight: bold;
+}
+.certificate h6 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: black;
+  text-align: center;
+  margin-bottom: 3rem;
 }
