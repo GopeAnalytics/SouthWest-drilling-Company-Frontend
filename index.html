@@ -3,10 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Iwinosa Fabian Idahosa" />
+    <meta name="author" content="SKEP Foundation-GopeAnalytics" />
     <meta name="description" content="SouthWest Drilling Company - Home" />
     <meta property="og:title" content="SouthWest Drilling Company" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="SouthWest Drilling website" />
+    <meta property="og:image" content="https://{domain}/og-fhlogo.jpeg" />
+    <meta property="og:url" content="https://{domain}" />
     <title>SouthWest Drilling Company - Home</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,11 +20,14 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="./site.webmanifest" />
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/larger.css" />
     <link rel="stylesheet" href="css/footer.css" />
     <link rel="stylesheet" href="css/header.css" />
-    <link rel="icon" href="images/favicon.ico" />
   </head>
 
   <body>
@@ -40,6 +45,7 @@
 
           <ul class="nav-menu" id="navMenu">
             <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="services.html">Services</a></li>
             <li><a href="projects.html">Projects</a></li>
             <li><a href="about.html">AboutUs</a></li>
           </ul>
@@ -66,34 +72,6 @@
           </div>
         </div>
       </section>
-      <div id="searchBoxContainer">
-        <div class="searchContainer">
-          <input
-            type="search"
-            id="search"
-            name="q"
-            placeholder="Search projects"
-          />
-          <button aria-label="button" class="search-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-              d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5
-              32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7
-              40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208
-              352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
-            </svg>
-          </button>
-        </div>
-
-        <div class="close">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-            <path
-              fill="#ffffff"
-              d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"
-            ></path>
-          </svg>
-        </div>
-      </div>
-
       <main id="homeMainContainer">
         <section class="welcome">
           <div class="welcome-content">
@@ -112,10 +90,24 @@
 
             <h2><span class="brand">What We Do</span></h2>
             <ul style="list-style-type: none">
-              <li>Borehole drilling</li>
-              <li>Water surveys</li>
-              <li>Pump installations</li>
-              <li>Maintenance</li>
+              <li>
+                <a href="borehole-drilling.html" class="service-link"
+                  >Borehole drilling</a
+                >
+              </li>
+              <li>
+                <a href="water-surveys.html" class="service-link"
+                  >Water surveys</a
+                >
+              </li>
+              <li>
+                <a href="pump-installations.html" class="service-link"
+                  >Pump installations</a
+                >
+              </li>
+              <li>
+                <a href="maintenance.html" class="service-link">Maintenance</a>
+              </li>
             </ul>
             <a href="services.html" class="cta-button">Explore Our Services</a>
           </div>
@@ -311,9 +303,7 @@
               efficient well drilling solutions.
             </p>
             <div class="social-links">
-              <a href="#" title="X (Twitter)"
-                ><i class="fab fa-x-twitter"></i
-              ></a>
+              <a href="#" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
               <a href="#" title="LinkedIn"
                 ><i class="fab fa-linkedin-in"></i
               ></a>
@@ -349,7 +339,7 @@
             <a href="about.html" class="footer-link">About Us</a>
             <a href="media.html" class="footer-link">Media</a>
             <a href="projects.html" class="footer-link">Projects</a>
-            <a href="#" class="footer-link">FAQs</a>
+            <a href="faq.html" class="footer-link">FAQs</a>
             <a href="content-management.html" class="footer-link">CMS</a>
           </div>
 
@@ -380,7 +370,6 @@
             <p>Safe. Sustainable. Strategic</p>`;
       </script>
 
-      <script defer src="js/script.js"></script>
       <script defer src="js/hamburger.js"></script>
       <script defer src="js/home.js"></script>
     </div>

@@ -9,6 +9,7 @@ class AuthManager {
 
   init() {
     this.bindEvents();
+    this.checkForResetToken();
   }
 
   bindEvents() {

@@ -1,88 +1,16 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const dynamicStyles = `
-    .service-grid, .video-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 2rem;
-    }
-    .media-card {
-        background-color: #ffffff;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        overflow: hidden;
-        cursor: pointer;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .media-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-    }
-    .media-card-thumbnail {
-        width: 100%;
-        height: 200px;
-        background-color: #f0f0f0;
-        position: relative;
-    }
-    .media-card-thumbnail img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    .media-card-thumbnail .play-icon {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 3.5rem;
-        color: rgba(255, 255, 255, 0.85);
-        text-shadow: 0 0 15px rgba(0,0,0,0.6);
-    }
-    .media-card-info {
-        padding: 1rem;
-    }
-    .media-card-title {
-        margin: 0 0 0.5rem 0;
-        font-size: 1.1rem;
-        color: #1e3a8a;
-        font-weight: 600;
-    }
-    .media-card-description {
-        margin: 0;
-        font-size: 0.9rem;
-        color: #666;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-    .empty-state {
-        text-align: center;
-        padding: 2rem;
-        color: #666;
-        grid-column: 1 / -1;
-    }
-    /* Style for the new main project description */
-    .project-main-description {
-        text-align: center;
-        max-width: 800px;
-        margin: 0.5rem auto 2rem auto;
-        color: #555;
-        font-size: 1rem;
-        line-height: 1.6;
-    }
-  `;
-  const styleSheet = document.createElement("style");
-  styleSheet.innerText = dynamicStyles;
-  document.head.appendChild(styleSheet);
+// js/media.js (Corrected)
 
-  fetchAndRenderPage();
+document.addEventListener("DOMContentLoaded", function () {
+  const API_BASE_URL = "http://localhost:5000/api";
+  fetchAndRenderPage(API_BASE_URL);
+  setupScrollAnimation();
 });
 
-async function fetchAndRenderPage() {
+async function fetchAndRenderPage(apiBaseUrl) {
   try {
     const [mediaRes, projectsRes] = await Promise.all([
-      fetch("http://localhost:5000/api/media"),
-      fetch("http://localhost:5000/api/media-projects"),
+      fetch(`${apiBaseUrl}/media`),
+      fetch(`${apiBaseUrl}/media-projects`),
     ]);
 
     if (!mediaRes.ok || !projectsRes.ok) {
@@ -96,81 +24,38 @@ async function fetchAndRenderPage() {
     renderBeforeAndAfterSection(projects);
     renderVideoGallery(mediaItems);
   } catch (error) {
+    // This block was being triggered by the TypeError
     console.error("Error loading page content:", error);
-    const mediaSection = document.querySelector(".media-section");
-    if (mediaSection) {
-      mediaSection.innerHTML =
-        '<p class="empty-state" style="color: red;">Could not load gallery content. Please try again later.</p>';
-    }
+    document.querySelector(".main-content").innerHTML =
+      '<p class="empty-state" style="color: red; padding: 5rem 1rem;">Could not load gallery content. An error occurred while rendering the page.</p>';
   }
 }
 
-/**
- *
- * @param {object} item
- * @returns {string}
- */
-function renderMediaCard(item) {
-  const thumbnailUrl =
-    item.fileType === "video" && item.fileUrl
-      ? item.fileUrl.replace(/\.(mp4|mov|avi|wmv)$/, ".jpg")
-      : item.fileUrl;
+const ITEMS_PER_PAGE = 3;
 
-  const clickHandler =
-    item.fileType === "video"
-      ? `showVideoModal('${item.title}', '${item.description}', '${item.fileUrl}')`
-      : `showImageModal('${item.title}', '${item.description}', '${item.fileUrl}')`;
-
-  return `
-        <div class="media-card" onclick="${clickHandler}">
-            <div class="media-card-thumbnail">
-                <img src="${
-                  thumbnailUrl || "assets/images/placeholder.webp"
-                }" alt="${
-    item.title
-  }" loading="lazy" onerror="this.onerror=null;this.src='assets/images/placeholder.webp';">
-                ${
-                  item.fileType === "video"
-                    ? '<i class="fas fa-play-circle play-icon"></i>'
-                    : ""
-                }
-            </div>
-            <div class="media-card-info">
-                <h4 class="media-card-title">${item.title || "Untitled"}</h4>
-                <p class="media-card-description">${
-                  item.description || "Click to view details."
-                }</p>
-            </div>
-        </div>
-    `;
-}
-
-/**
- *  "Our Services" section with relevant images.
- */
 function renderServicesSection(mediaItems) {
   const serviceCategoryMapping = {
-    "Borehole Drilling": ["drilling-rig", "platform"],
-    Maintenance: ["team"],
-    "Pump Installations": ["equipment"],
+    "Borehole Drilling": ["borehole-drilling", "drilling-rig"],
+    "Water Surveys": ["water-surveys", "platform"],
+    Maintenance: ["maintenance", "team"],
+    "Pump Installations": ["pump-installations", "equipment"],
   };
 
   document.querySelectorAll(".service-category").forEach((categoryEl) => {
-    const title = categoryEl.querySelector(".service-title")?.textContent;
+    const title = categoryEl
+      .querySelector(".service-title")
+      ?.textContent.trim();
     const targetCategories = serviceCategoryMapping[title];
     const serviceGrid = categoryEl.querySelector(".service-grid");
 
     if (targetCategories && serviceGrid) {
-      const relevantMedia = mediaItems
-        .filter(
-          (item) =>
-            targetCategories.includes(item.category) &&
-            item.fileType === "image"
-        )
-        .slice(0, 3); // Take up to 3 images per service
+      const relevantMedia = mediaItems.filter((item) =>
+        targetCategories.includes(item.category)
+      );
 
+      serviceGrid.innerHTML = "";
       if (relevantMedia.length > 0) {
-        serviceGrid.innerHTML = relevantMedia.map(renderMediaCard).join("");
+        renderItemsInGrid(serviceGrid, relevantMedia, 0);
       } else {
         serviceGrid.innerHTML =
           '<p class="empty-state">Media for this service will be uploaded soon.</p>';
@@ -179,16 +64,45 @@ function renderServicesSection(mediaItems) {
   });
 }
 
-/**
- *  "Before & After" section with the latest projects.
- */
+function renderItemsInGrid(grid, items, startIndex) {
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const itemsToRender = items.slice(startIndex, endIndex);
+
+  itemsToRender.forEach((item) => {
+    const cardHTML = createMediaCard(item);
+    // --- FIX IS HERE ---
+    // Only proceed if a card was actually created
+    if (cardHTML) {
+      grid.insertAdjacentHTML("beforeend", cardHTML);
+      const newCard = grid.lastElementChild;
+      // Only observe if the new element exists
+      if (newCard) {
+        observer.observe(newCard);
+      }
+    }
+  });
+
+  const loadMoreBtn = grid.parentElement.querySelector(".load-more-btn");
+  if (loadMoreBtn) loadMoreBtn.remove();
+
+  if (endIndex < items.length) {
+    const button = document.createElement("button");
+    button.className = "load-more-btn";
+    button.textContent = "Load More";
+    button.onclick = () => {
+      renderItemsInGrid(grid, items, endIndex);
+    };
+    grid.parentElement.appendChild(button);
+  }
+}
+
 function renderBeforeAndAfterSection(projects) {
   const container = document.querySelector(".before-after-container");
   if (!container) return;
 
-  const projectsWithFiles = projects
-    .filter((p) => p.beforeFileUrl && p.afterFileUrl)
-    .slice(0, 2);
+  const projectsWithFiles = projects.filter(
+    (p) => p.beforeFiles?.length > 0 && p.afterFiles?.length > 0
+  );
 
   if (projectsWithFiles.length > 0) {
     container.innerHTML = projectsWithFiles
@@ -196,105 +110,210 @@ function renderBeforeAndAfterSection(projects) {
         (project) => `
       <div class="before-after-item">
         <h3 class="project-title">${project.title} - ${project.location}</h3>
-        <p class="project-main-description">${project.description}</p>
+        <p class="project-main-description">${project.description || ""}</p>
         <div class="comparison-wrapper">
           <div class="before-after-card before">
             <div class="image-label">Before</div>
-            ${renderMediaCard({
-              fileUrl: project.beforeFileUrl,
-              fileType: project.beforeFileType,
-              title: "Before: " + project.title,
+            ${createMediaCard({
+              title: `Before: ${project.title}`,
               description: project.beforeDescription,
+              files: project.beforeFiles,
             })}
           </div>
           <div class="before-after-card after">
             <div class="image-label">After</div>
-             ${renderMediaCard({
-               fileUrl: project.afterFileUrl,
-               fileType: project.afterFileType,
-               title: "After: " + project.title,
-               description: project.afterDescription,
-             })}
+            ${createMediaCard({
+              title: `After: ${project.title}`,
+              description: project.afterDescription,
+              files: project.afterFiles,
+            })}
           </div>
         </div>
-      </div>
-    `
+      </div>`
       )
       .join("");
+    // Add observer to the parent items
+    container
+      .querySelectorAll(".before-after-item")
+      .forEach((card) => observer.observe(card));
   } else {
     container.innerHTML =
       '<p class="empty-state">Project showcases will be available soon.</p>';
   }
 }
 
-/**
- * "Video Gallery" section with all uploaded videos.
- */
 function renderVideoGallery(mediaItems) {
   const videoGrid = document.querySelector(".video-grid");
   if (!videoGrid) return;
 
-  const videos = mediaItems.filter((item) => item.fileType === "video");
+  const videos = mediaItems.filter(
+    (item) => item.files && item.files.some((f) => f.fileType === "video")
+  );
 
   if (videos.length > 0) {
-    videoGrid.innerHTML = videos.map(renderMediaCard).join("");
+    videoGrid.innerHTML = ""; // Clear grid
+    videos.forEach((item) => {
+      const cardHTML = createMediaCard(item);
+      // --- ADDED FIX HERE TOO ---
+      if (cardHTML) {
+        videoGrid.insertAdjacentHTML("beforeend", cardHTML);
+        const newCard = videoGrid.lastElementChild;
+        if (newCard) {
+          observer.observe(newCard);
+        }
+      }
+    });
   } else {
     videoGrid.innerHTML =
       '<p class="empty-state">No videos have been uploaded yet.</p>';
   }
 }
 
-function showImageModal(title, description, imageUrl) {
-  destroyExistingModal();
-  const modalHTML = `
-        <div class="modal dynamic-modal" style="display: flex;">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <img src="${imageUrl}" alt="${title}" class="modal-image-dynamic"/>
-                <div class="modal-info">
-                  <h3 class="modal-title">${title}</h3>
-                  <p class="modal-description">${description}</p>
-                </div>
-            </div>
-        </div>
-    `;
-  document.body.insertAdjacentHTML("beforeend", modalHTML);
-  addModalEventListeners();
+function createMediaCard(item) {
+  if (!item.files || item.files.length === 0) return ""; // This prevents cards for empty items
+
+  const firstFile = item.files[0];
+  const thumbnailUrl =
+    firstFile.fileType === "video"
+      ? firstFile.fileUrl.replace(/\.(mp4|mov|avi|wmv)$/, ".jpg")
+      : firstFile.fileUrl;
+
+  const isVideo = item.files.some((f) => f.fileType === "video");
+  // Storing data as a JSON string; ensuring it's properly escaped for the HTML attribute.
+  const itemData = JSON.stringify({
+    title: item.title,
+    description: item.description,
+    files: item.files,
+  })
+    .replace(/'/g, "&apos;")
+    .replace(/"/g, "&quot;");
+
+  // --- THE FIX IS IN THE LINE BELOW ---
+  // Changed url("${thumbnailUrl}") to url('${thumbnailUrl}') to fix the broken style attribute.
+  return `
+    <div class="media-card" onclick='showMediaModal(${itemData})'>
+      <div class="media-card-thumbnail" style="background-image: url('${thumbnailUrl}')">
+        ${isVideo ? '<i class="fas fa-play-circle play-icon"></i>' : ""}
+      </div>
+      <div class="media-card-info">
+        <h4 class="media-card-title">${item.title || "Untitled"}</h4>
+        <p class="media-card-description">${
+          item.description || "Click to view details."
+        }</p>
+      </div>
+    </div>`;
+}
+let observer;
+function setupScrollAnimation() {
+  observer = new IntersectionObserver(
+    (entries, observerInstance) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observerInstance.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: "0px", threshold: 0.1 }
+  );
 }
 
-function showVideoModal(title, description, videoUrl) {
-  destroyExistingModal();
-  const modalHTML = `
-        <div class="modal dynamic-modal" style="display: flex;">
-            <div class="modal-content video-modal-content">
-                <span class="close">&times;</span>
-                <video src="${videoUrl}" class="modal-video-dynamic" controls autoplay></video>
-                <div class="modal-info">
-                  <h3 class="modal-title">${title}</h3>
-                  <p class="modal-description">${description}</p>
-                </div>
-            </div>
-        </div>
-    `;
-  document.body.insertAdjacentHTML("beforeend", modalHTML);
-  addModalEventListeners();
-}
+function showMediaModal({ title, description, files }) {
+  const container = document.getElementById("mediaModalContainer");
+  if (!files || files.length === 0) return;
 
-function destroyExistingModal() {
-  const existingModal = document.querySelector(".dynamic-modal");
-  if (existingModal) {
-    existingModal.remove();
-  }
-}
+  let currentIndex = 0;
 
-function addModalEventListeners() {
-  const modal = document.querySelector(".dynamic-modal");
-  if (!modal) return;
-
-  modal.querySelector(".close").addEventListener("click", destroyExistingModal);
-  modal.addEventListener("click", (e) => {
-    if (e.target.classList.contains("dynamic-modal")) {
-      destroyExistingModal();
+  const getMediaElement = (file) => {
+    if (file.fileType === "video") {
+      return `<video src="${file.fileUrl}" class="modal-media-item" controls autoplay muted playsinline></video>`;
     }
+    return `<img src="${file.fileUrl}" alt="${title}" class="modal-media-item"/>`;
+  };
+
+  const modalHTML = `
+    <div class="media-modal-overlay">
+      <div class="media-modal-content">
+        <button class="modal-close-btn">&times;</button>
+        <div class="modal-media-area">
+          ${
+            files.length > 1
+              ? '<button class="modal-nav-arrow prev">&lt;</button>'
+              : ""
+          }
+          ${getMediaElement(files[currentIndex])}
+          ${
+            files.length > 1
+              ? '<button class="modal-nav-arrow next">&gt;</button>'
+              : ""
+          }
+        </div>
+        <div class="modal-info-area">
+          <h3 class="modal-title">${title || ""}</h3>
+          <p class="modal-description">${description || ""}</p>
+        </div>
+      </div>
+    </div>
+  `;
+  container.innerHTML = modalHTML;
+
+  const overlay = container.querySelector(".media-modal-overlay");
+  const mediaArea = container.querySelector(".modal-media-area");
+
+  const updateMedia = () => {
+    mediaArea.innerHTML = `
+        ${
+          files.length > 1
+            ? '<button class="modal-nav-arrow prev">&lt;</button>'
+            : ""
+        }
+        ${getMediaElement(files[currentIndex])}
+        ${
+          files.length > 1
+            ? '<button class="modal-nav-arrow next">&gt;</button>'
+            : ""
+        }
+    `;
+    if (files.length > 1) {
+      mediaArea.querySelector(".prev").addEventListener("click", navigatePrev);
+      mediaArea.querySelector(".next").addEventListener("click", navigateNext);
+    }
+  };
+
+  const navigate = (direction) => {
+    currentIndex = (currentIndex + direction + files.length) % files.length;
+    updateMedia();
+  };
+  const navigateNext = () => navigate(1);
+  const navigatePrev = () => navigate(-1);
+
+  const closeModal = () => {
+    const modalContent = overlay.querySelector(".media-modal-content");
+    if (modalContent) {
+      overlay.style.animation = "fadeOutModal 0.3s forwards";
+      modalContent.style.animation = "zoomOutModal 0.3s forwards";
+    }
+    setTimeout(() => (container.innerHTML = ""), 300);
+  };
+
+  if (files.length > 1) {
+    mediaArea.querySelector(".prev").addEventListener("click", navigatePrev);
+    mediaArea.querySelector(".next").addEventListener("click", navigateNext);
+  }
+  container
+    .querySelector(".modal-close-btn")
+    .addEventListener("click", closeModal);
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) closeModal();
   });
 }
+
+// Add keyframes for modal fade out to your CSS if they don't exist.
+// This is an example to add to your media.css
+const styleSheet = document.createElement("style");
+styleSheet.type = "text/css";
+styleSheet.innerText = `
+    @keyframes fadeOutModal { from { opacity: 1; } to { opacity: 0; } }
+    @keyframes zoomOutModal { from { transform: scale(1); } to { transform: scale(0.95); } }
+`;
+document.head.appendChild(styleSheet);

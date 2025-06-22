@@ -326,7 +326,9 @@ body {
 .category-industrial {
   background: #ef4444;
 }
-
+.category-agricultural {
+  background: green;
+}
 .project-content {
   padding: 1.5rem;
   display: flex;

@@ -228,20 +228,19 @@ body {
 /* Media Gallery */
 .media-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
 }
 
 .media-item {
   position: relative;
-  aspect-ratio: 16/10;
-  border-radius: 8px;
-  overflow: hidden;
-  background-color: #e9ecef;
+  padding-top: 100%; /* Creates a square aspect ratio */
+  background-color: #e0e0e0; /* Fallback color */
   background-size: cover;
   background-position: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .media-item:hover {
@@ -253,12 +252,15 @@ body {
   position: absolute;
   bottom: 0;
   left: 0;
-  right: 0;
-  padding: 1rem;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
   color: white;
-  font-weight: 500;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+  padding: 1rem 0.75rem 0.5rem;
   font-size: 0.9rem;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .modal-overlay {

@@ -4,10 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>South West - Content Management System</title>
+    <meta name="author" content="SKEP Foundation-GopeAnalytics" />
+    <meta name="description" content="SouthWest Drilling Company - CMS" />
+    <meta property="og:title" content="SouthWest Drilling Company" />
+    <meta property="og:type" content="SouthWest Drilling website" />
+    <meta property="og:image" content="https://{domain}/og-logo.jpg" />
+    <meta property="og:url" content="https://{domain}" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="./site.webmanifest" />
     <link rel="stylesheet" href="css/mains.css" />
     <link rel="stylesheet" href="css/header.css" />
     <link rel="stylesheet" href="css/footer.css" />
@@ -117,8 +127,8 @@
         <ul class="nav-menu" id="navMenu">
           <li><a href="index.html">Home</a></li>
           <li><a href="projects.html">Projects</a></li>
-          <li><a href="about.html">AboutUs</a></li>
           <li><a href="media.html">Media</a></li>
+          <li><a href="about.html">AboutUs</a></li>
           <li><a href="content-management.html" class="active">Admin</a></li>
         </ul>
         <div class="mobile-menu-toggle" id="mobileMenuToggle">
@@ -250,6 +260,7 @@
               <option value="water-surveys">Water Surveys</option>
               <option value="maintenance">Maintenance</option>
               <option value="pump-installations">Pump Installations</option>
+              <option value="agricultural">Agricultural</option>
               <option value="industrial">Industrial</option>
             </select>
           </div>
@@ -430,9 +441,12 @@
             <label for="mediaProjectType">Project Type</label
             ><select id="mediaProjectType" name="type" required>
               <option value="">Select Type...</option>
+              <option value="monitoring">Maintenance</option>
+              <option value="water-well">Borehole Drilling</option>
+              <option value="pump-installations">Pump Installations</option>
+              <option value="water-surveys">Water Surveys</option>
               <option value="agricultural">Agricultural</option>
-              <option value="monitoring">Monitoring</option>
-              <option value="water-well">Water Well</option>
+              <option value="industrial">Industrial</option>
             </select>
           </div>
           <div class="form-group">
@@ -487,12 +501,15 @@
           <hr style="margin: 20px 0" />
           <h4>Before State</h4>
           <div class="form-group">
-            <label for="beforeFile">"Before" Image/Video</label
-            ><input
+            <label for="beforeFiles"
+              >"Before" Image/Video (Select multiple)</label
+            >
+            <input
               type="file"
-              id="beforeFile"
-              name="beforeFile"
+              id="beforeFiles"
+              name="beforeFiles"
               accept="image/*,video/*"
+              multiple
             />
           </div>
           <div class="form-group">
@@ -506,12 +523,13 @@
           <hr style="margin: 20px 0" />
           <h4>After State</h4>
           <div class="form-group">
-            <label for="afterFile">"After" Image/Video</label
-            ><input
+            <label for="afterFile">"After" Image/Video (Select multiple)</label>
+            <input
               type="file"
               id="afterFile"
-              name="afterFile"
+              name="afterFiles"
               accept="image/*,video/*"
+              multiple
             />
           </div>
           <div class="form-group">
@@ -553,10 +571,10 @@
             <label for="mediaCategory">Category</label
             ><select id="mediaCategory" name="category" required>
               <option value="">Select Category...</option>
-              <option value="drilling-rig">Drilling Rig</option>
-              <option value="platform">Platform</option>
-              <option value="equipment">Equipment</option>
-              <option value="team">Team</option>
+              <option value="drilling-rig">Borehole Drillling</option>
+              <option value="platform">Water Surveys</option>
+              <option value="equipment">Pump Installations</option>
+              <option value="team">Maintenance</option>
             </select>
           </div>
           <div class="form-group">
@@ -568,13 +586,14 @@
             ></textarea>
           </div>
           <div class="form-group">
-            <label for="mediaFile">Media File</label
+            <label for="mediaFile">Media Files (Select multiple)</label
             ><input
               type="file"
               id="mediaFile"
-              name="file"
+              name="files"
               accept="image/*,video/*"
               required
+              multiple
             />
           </div>
           <div class="form-actions">
@@ -626,10 +645,10 @@
             <label for="mediaEditCategory">Category</label>
             <select id="mediaEditCategory" name="category" required>
               <option value="">Select Category...</option>
-              <option value="drilling-rig">Drilling Rig</option>
-              <option value="platform">Platform</option>
-              <option value="equipment">Equipment</option>
-              <option value="team">Team</option>
+              <option value="drilling-rig">Borehole Drillling</option>
+              <option value="platform">Water Surveys</option>
+              <option value="equipment">Pump Installations</option>
+              <option value="team">Maintenance</option>
             </select>
           </div>
           <div class="form-group">
@@ -683,9 +702,12 @@
             <label for="mediaProjectEditType">Project Type</label>
             <select id="mediaProjectEditType" name="type" required>
               <option value="">Select Type...</option>
+              <option value="monitoring">Maintenance</option>
+              <option value="water-well">Borehole Drilling</option>
+              <option value="pump-installations">Pump Installations</option>
+              <option value="water-surveys">Water Surveys</option>
               <option value="agricultural">Agricultural</option>
-              <option value="monitoring">Monitoring</option>
-              <option value="water-well">Water Well</option>
+              <option value="industrial">Industrial</option>
             </select>
           </div>
           <div class="form-group">
@@ -794,7 +816,7 @@
             efficient well drilling solutions.
           </p>
           <div class="social-links">
-            <a href="#" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
             <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
             <a
               href="https://web.facebook.com/Southwestdrillingcompany"

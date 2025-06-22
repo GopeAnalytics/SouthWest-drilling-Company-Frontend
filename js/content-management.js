@@ -375,10 +375,14 @@ class ContentManager {
     const submitBtn = form.querySelector('button[type="submit"]');
     this.setLoadingState(submitBtn, true, "Updating...");
     try {
+      // CORRECTED: Sending as JSON, which is appropriate for text-only updates
       const res = await fetch(`${this.apiBaseUrl}/api/media/${mediaId}`, {
         method: "PUT",
-        headers: this.getAuthHeader(),
-        body: formData,
+        headers: {
+          ...this.getAuthHeader(),
+          "Content-Type": "application/json", // Set content type to JSON
+        },
+        body: JSON.stringify(Object.fromEntries(formData)), // Convert form data to JSON
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message);
@@ -390,10 +394,9 @@ class ContentManager {
     } catch (error) {
       this.showToast(`Error: ${error.message}`, "error");
     } finally {
-      this.setLoadingState(submitBtn, false, "Update Media");
+      this.setLoadingState(submitBtn, false, "Save Changes"); // Changed text to match button
     }
   }
-
   async deleteMedia(id) {
     if (!confirm("Are you sure you want to delete this media item?")) return;
     try {
@@ -431,13 +434,22 @@ class ContentManager {
   renderMedia() {
     const container = document.getElementById("mediaGallery");
     if (!container) return;
+
+    // Updated to handle the new `files` array structure.
     container.innerHTML = this.media.length
       ? this.media
           .map((item) => {
-            const thumbnailUrl =
-              item.fileType === "video"
-                ? item.fileUrl.replace(/\.mp4$/, ".jpg")
-                : item.fileUrl;
+            // Default thumbnail in case there are no files
+            let thumbnailUrl = "";
+            // Check if the files array exists and is not empty
+            if (item.files && item.files.length > 0) {
+              const firstFile = item.files[0];
+              thumbnailUrl =
+                firstFile.fileType === "video"
+                  ? firstFile.fileUrl.replace(/\.(mp4|mov|avi|wmv)$/, ".jpg")
+                  : firstFile.fileUrl;
+            }
+
             return `
               <div class="media-item" style="background-image: url('${thumbnailUrl}')">
                   <div class="media-item-title">${this.escapeHtml(

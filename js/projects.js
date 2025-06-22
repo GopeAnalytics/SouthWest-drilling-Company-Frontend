@@ -8,7 +8,7 @@ class ProjectsApp {
     this.filteredProjects = [];
     this.isFilterActive = false;
     this.currentPage = 1;
-    this.itemsPerPage = 9;
+    this.itemsPerPage = 3;
     this.slideshowIntervals = [];
     this.init();
   }
