@@ -47,7 +47,9 @@ class ProjectsApp {
     const loadingEl = document.getElementById("loadingContainer");
     loadingEl.style.display = "flex";
     try {
-      const response = await fetch("http://localhost:5000/api/page-projects");
+      const response = await fetch(
+        "https://app.southwestsystem.org/api/page-projects"
+      );
       if (!response.ok) throw new Error("Failed to fetch projects");
       this.allProjects = await response.json();
     } catch (error) {

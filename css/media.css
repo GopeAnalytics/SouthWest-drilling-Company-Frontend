@@ -9,7 +9,7 @@
       rgba(0, 96, 100, 0.4) 70%,
       rgba(0, 0, 0, 0.1) 100%
     ),
-    url("../assets/images/homeHero.jpg");
+    url("./homeHero.jpg");
   color: white;
   padding: 8rem 0;
   text-align: center;

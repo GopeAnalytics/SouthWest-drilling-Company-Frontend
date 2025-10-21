@@ -3,7 +3,7 @@ class ContentManager {
     this.pageProjects = [];
     this.mediaProjects = [];
     this.media = [];
-    this.apiBaseUrl = "http://localhost:5000";
+    this.apiBaseUrl = "https://app.southwestsystem.org";
     this.eventsBound = false;
   }
 
@@ -93,8 +93,6 @@ class ContentManager {
     this.setLoadingState(submitBtn, true, "Updating...");
 
     try {
-      // Note: This simplified update only sends text fields.
-      // A full update would require more complex backend logic for file replacements.
       const res = await fetch(
         `${this.apiBaseUrl}/api/page-projects/${projectId}`,
         {
@@ -313,8 +311,6 @@ class ContentManager {
         ? new Date(project.endDate).toISOString().split("T")[0]
         : "";
 
-    // Use Optional Chaining (?.) to safely access nested properties
-    // and provide a fallback to an empty string ('') if the data is missing.
     form.querySelector('[name="beforeDescription"]').value =
       project.before?.description || "";
     form.querySelector('[name="afterDescription"]').value =
@@ -375,14 +371,13 @@ class ContentManager {
     const submitBtn = form.querySelector('button[type="submit"]');
     this.setLoadingState(submitBtn, true, "Updating...");
     try {
-      // CORRECTED: Sending as JSON, which is appropriate for text-only updates
       const res = await fetch(`${this.apiBaseUrl}/api/media/${mediaId}`, {
         method: "PUT",
         headers: {
           ...this.getAuthHeader(),
-          "Content-Type": "application/json", // Set content type to JSON
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(Object.fromEntries(formData)), // Convert form data to JSON
+        body: JSON.stringify(Object.fromEntries(formData)),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message);
@@ -394,7 +389,7 @@ class ContentManager {
     } catch (error) {
       this.showToast(`Error: ${error.message}`, "error");
     } finally {
-      this.setLoadingState(submitBtn, false, "Save Changes"); // Changed text to match button
+      this.setLoadingState(submitBtn, false, "Save Changes");
     }
   }
   async deleteMedia(id) {
@@ -435,13 +430,11 @@ class ContentManager {
     const container = document.getElementById("mediaGallery");
     if (!container) return;
 
-    // Updated to handle the new `files` array structure.
     container.innerHTML = this.media.length
       ? this.media
           .map((item) => {
-            // Default thumbnail in case there are no files
             let thumbnailUrl = "";
-            // Check if the files array exists and is not empty
+
             if (item.files && item.files.length > 0) {
               const firstFile = item.files[0];
               thumbnailUrl =
@@ -517,13 +510,11 @@ class ContentManager {
       navLink.addEventListener("click", (e) => {
         const targetViewId = e.currentTarget.dataset.view;
 
-        // Update active state on nav links
         document
           .querySelectorAll(".cms-nav-link")
           .forEach((item) => item.classList.remove("active"));
         e.currentTarget.classList.add("active");
 
-        // Show the target view and hide others
         document.querySelectorAll(".content-view").forEach((view) => {
           view.classList.remove("active-view");
           if (view.id === targetViewId) {
@@ -577,7 +568,7 @@ class ContentManager {
     document
       .getElementById("mediaProjectUploadForm")
       ?.addEventListener("submit", (e) => this.handleMediaProjectUpload(e));
-    // Event listener for the new "Before & After" edit form
+
     document
       .getElementById("mediaProjectEditForm")
       ?.addEventListener("submit", (e) => this.handleMediaProjectUpdate(e));
@@ -712,9 +703,8 @@ document.addEventListener("login", () => {
   }
 });
 
-// This new block triggers the session check after all scripts are loaded, fixing the race condition.
+// triggers the session check after all scripts are loaded- race condition.
 document.addEventListener("DOMContentLoaded", () => {
-  // This ensures that auth.js has created window.authManager before we try to use it.
   if (window.authManager) {
     window.authManager.initializeSession();
   }

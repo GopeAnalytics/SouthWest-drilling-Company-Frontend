@@ -3,7 +3,7 @@ class AuthManager {
     this.token = null;
     this.username = null;
     this.sessionKey = "cms_token";
-    this.apiBaseUrl = "http://localhost:5000";
+    this.apiBaseUrl = "https://app.southwestsystem.org";
     this.init();
   }
 
@@ -73,9 +73,9 @@ class AuthManager {
     const token = localStorage.getItem(this.sessionKey);
     if (token) {
       this.token = token;
-      this.username = localStorage.getItem("cms_username"); // Get username from storage
+      this.username = localStorage.getItem("cms_username");
       this.hideLoginModal();
-      // Dispatch the event now that we know other scripts are loaded
+
       document.dispatchEvent(new CustomEvent("login"));
     } else {
       this.showLoginModal();
@@ -182,7 +182,7 @@ class AuthManager {
       this.token = null;
       this.username = null;
       localStorage.removeItem(this.sessionKey);
-      localStorage.removeItem("cms_username"); // Also clear the username
+      localStorage.removeItem("cms_username");
       window.location.reload();
     }
   }

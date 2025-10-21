@@ -1,7 +1,7 @@
 // js/media.js (Corrected)
 
 document.addEventListener("DOMContentLoaded", function () {
-  const API_BASE_URL = "http://localhost:5000/api";
+  const API_BASE_URL = "https://app.southwestsystem.org/api";
   fetchAndRenderPage(API_BASE_URL);
   setupScrollAnimation();
 });
@@ -24,7 +24,6 @@ async function fetchAndRenderPage(apiBaseUrl) {
     renderBeforeAndAfterSection(projects);
     renderVideoGallery(mediaItems);
   } catch (error) {
-    // This block was being triggered by the TypeError
     console.error("Error loading page content:", error);
     document.querySelector(".main-content").innerHTML =
       '<p class="empty-state" style="color: red; padding: 5rem 1rem;">Could not load gallery content. An error occurred while rendering the page.</p>';
@@ -70,12 +69,11 @@ function renderItemsInGrid(grid, items, startIndex) {
 
   itemsToRender.forEach((item) => {
     const cardHTML = createMediaCard(item);
-    // --- FIX IS HERE ---
-    // Only proceed if a card was actually created
+
     if (cardHTML) {
       grid.insertAdjacentHTML("beforeend", cardHTML);
       const newCard = grid.lastElementChild;
-      // Only observe if the new element exists
+
       if (newCard) {
         observer.observe(newCard);
       }
@@ -132,7 +130,7 @@ function renderBeforeAndAfterSection(projects) {
       </div>`
       )
       .join("");
-    // Add observer to the parent items
+
     container
       .querySelectorAll(".before-after-item")
       .forEach((card) => observer.observe(card));
@@ -151,10 +149,10 @@ function renderVideoGallery(mediaItems) {
   );
 
   if (videos.length > 0) {
-    videoGrid.innerHTML = ""; // Clear grid
+    videoGrid.innerHTML = "";
     videos.forEach((item) => {
       const cardHTML = createMediaCard(item);
-      // --- ADDED FIX HERE TOO ---
+
       if (cardHTML) {
         videoGrid.insertAdjacentHTML("beforeend", cardHTML);
         const newCard = videoGrid.lastElementChild;
@@ -170,7 +168,7 @@ function renderVideoGallery(mediaItems) {
 }
 
 function createMediaCard(item) {
-  if (!item.files || item.files.length === 0) return ""; // This prevents cards for empty items
+  if (!item.files || item.files.length === 0) return "";
 
   const firstFile = item.files[0];
   const thumbnailUrl =
@@ -179,7 +177,7 @@ function createMediaCard(item) {
       : firstFile.fileUrl;
 
   const isVideo = item.files.some((f) => f.fileType === "video");
-  // Storing data as a JSON string; ensuring it's properly escaped for the HTML attribute.
+  // Storing data as a JSON string
   const itemData = JSON.stringify({
     title: item.title,
     description: item.description,
@@ -188,8 +186,6 @@ function createMediaCard(item) {
     .replace(/'/g, "&apos;")
     .replace(/"/g, "&quot;");
 
-  // --- THE FIX IS IN THE LINE BELOW ---
-  // Changed url("${thumbnailUrl}") to url('${thumbnailUrl}') to fix the broken style attribute.
   return `
     <div class="media-card" onclick='showMediaModal(${itemData})'>
       <div class="media-card-thumbnail" style="background-image: url('${thumbnailUrl}')">
@@ -308,8 +304,6 @@ function showMediaModal({ title, description, files }) {
   });
 }
 
-// Add keyframes for modal fade out to your CSS if they don't exist.
-// This is an example to add to your media.css
 const styleSheet = document.createElement("style");
 styleSheet.type = "text/css";
 styleSheet.innerText = `

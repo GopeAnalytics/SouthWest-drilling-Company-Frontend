@@ -1,4 +1,4 @@
-const images = ["assets/images/LodwarProject2.jpg", "assets/images/home2.jpg"];
+const images = ["./LodwarProject2.jpg", "./waterislife.jpg"];
 const randomIndex = Math.floor(Math.random() * images.length);
 const style = document.createElement("style");
 const heroSection = document.querySelector(".home-hero");
